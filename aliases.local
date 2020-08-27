@@ -1,0 +1,5 @@
+alias vi='nvim'
+alias vim='nvim'
+alias vimx='nvim'
+alias v='nvim'
+alias php='/usr/local/opt/php@7.3/bin/php'

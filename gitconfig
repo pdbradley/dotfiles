@@ -1,0 +1,53 @@
+[user]
+   name = Philip Bradley
+   email = pdbradley@gmail.com
+[core]
+	autocrlf = false
+	safecrlf = true
+	excludesfile = ~/.gitignore
+	editor = /usr/bin/vim
+[color]
+  ui = auto
+[push]
+  default = upstream
+[fetch]
+  prune = true
+[alias]
+  b = branch
+  cm = commit
+  co = checkout
+  aa = add --all
+  ap = add --patch
+  ca = commit --amend
+  ci = commit -v
+  co = checkout
+  st = status
+  pl = pull
+  ps = push
+  up = !git fetch origin && git rebase origin/master
+  mup = !git checkout master && git pull && git checkout -
+  ureset = !git upstream && git reset --hard $(git upstream)  #resets current branch to upstream
+  upstream = rev-parse --abbrev-ref --symbolic-full-name @{u}
+  prunelocal = !sh -c 'git branch --merged | grep -v master | xargs -n 1 git branch -d'
+  pruneremote = remote prune origin
+  sla = log --oneline --decorate --graph --all
+  whowhen = log --pretty=format:\"%C(yellow)%h%C(reset) - %an [%C(green)%ar%C(reset)] %s\"
+  glog = log -E -i --grep
+  stashu = stash -u
+  car = commit --amend --no-edit
+  unstage = reset
+  unchange = checkout --
+  uncommit = reset --soft HEAD^
+  df = diff --word-diff --color-words
+  browse = !hub browse
+  compare = !hub compare
+  issues = !hub issues
+  fall = "!for remote in $(git remote); do echo "Fetching $remote"; git fetch "$remote"; done"
+  childsha = !git rev-list HEAD..master | tail -n 1
+  gchild = !git checkout $(git childsha)
+  recent = for-each-ref --sort=-committerdate refs/heads/
+  locate = log --reverse --source --all -S 
+
+
+[gitreview]
+	username = pdbradley
