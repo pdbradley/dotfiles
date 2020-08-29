@@ -42,11 +42,12 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/tComment'
 
 "react plugins (experimental)
-Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'prettier/vim-prettier'
-let g:prettier#autoformat = 0
+"Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'branch': 'release/0.x' }
+"let g:prettier#autoformat = 0
 " big problems using the vim-prettier plugins version of prettier
-let g:prettier#exec_cmd_path = "~/node_modules/.bin"
+"let g:prettier#exec_cmd_path = "~/node_modules/.bin"
+"let g:prettier#config#parser = 'babylon'
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
 
 let g:user_emmet_leader_key='<Tab>'
