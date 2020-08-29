@@ -42,7 +42,7 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/tComment'
 
 "react plugins (experimental)
-Plug 'mxw/vim-jsx'
+Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'prettier/vim-prettier'
 let g:prettier#autoformat = 0
 " big problems using the vim-prettier plugins version of prettier
@@ -230,9 +230,9 @@ nnoremap ]r :ALENextWrap<CR>
 nnoremap [r :ALEPreviousWrap<CR>
 
 " FZF {{{
-nnoremap <c-a> :Files<cr>
-nnoremap <c-p> :Buffers<cr>
-nnoremap <C-F> :execute 'Rg ' . input('Rg/')<CR>
+nnoremap <c-p> :Files<cr>
+nnoremap <c-e> :Buffers<cr>
+nnoremap <C-y> :execute 'Rg ' . input('Rg/')<CR>
 
 " {{{
 
@@ -541,4 +541,6 @@ syntax on
 au BufRead /tmp/psql.edit.* set syntax=sql
 
 
+
+"let g:jsx_ext_required = 0
 
