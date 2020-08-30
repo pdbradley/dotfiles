@@ -41,16 +41,23 @@ Plug 'tpope/vim-surround'
 Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/tComment'
 
-"react plugins (experimental)
-"Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'branch': 'release/0.x' }
-"let g:prettier#autoformat = 0
-" big problems using the vim-prettier plugins version of prettier
-"let g:prettier#exec_cmd_path = "~/node_modules/.bin"
-"let g:prettier#config#parser = 'babylon'
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'epilande/vim-react-snippets'
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger='<tab>'
 
-let g:user_emmet_leader_key='<Tab>'
+" shortcut to go to next position
+let g:UltiSnipsJumpForwardTrigger='<c-j>'
+
+" shortcut to go to previous position
+let g:UltiSnipsJumpBackwardTrigger='<c-k>'
+
+"react plugins (experimental)
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'branch': 'release/0.x' }
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+"let g:user_emmet_leader_key='<Tab>'
 let g:user_emmet_settings = {
   \  'javascript.jsx' : {
     \      'extends' : 'jsx',
