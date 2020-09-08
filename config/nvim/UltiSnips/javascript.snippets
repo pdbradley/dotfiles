@@ -1,5 +1,99 @@
-snippet bl "function" b
-function ${1:functionName}(${2:arguements}) {
-  $0
+snippet react "boiletplate react file" b
+import React from "react";
+
+export default class ${1:className} extends React.Component {
+  constructor() {
+    super();
+    this.state = {}
+  }
+
+  render() {
+    return (
+      <div>${2:renderContent}</div>
+    );
+  }
 }
 endsnippet
+
+snippet reactp "react purecomponent" b
+import React, { PureComponent } from "react";
+
+export default class ${1:className} extends PureComponent {
+  constructor() {
+    super();
+    this.state = {}
+  }
+
+  render() {
+    return (
+      <div>${2:renderContent}</div>
+    );
+  }
+}
+endsnippet
+
+snippet reactf "react functional" b
+import React from "react";
+
+export default const ${1:className} = props => {
+  return (
+    <div>${2:renderContent}</div>
+  )
+}
+endsnippet
+
+snippet reactfs "function functional simple" b
+import React from "react";
+
+export default const ${1:className} = props => <div>${2:renderContent}</div>
+endsnippet
+
+snippet reactfp "react functional props deconstructed" b
+import React from "react";
+
+export default const ${1:className} = ({${2:props}}) => <div>${2:renderContent}</div>
+endsnippet
+
+snippet clt "console log text" b
+console.log('${1:logText}');
+endsnippet
+
+snippet clv "console log value" b
+console.log(${1:logValue});
+endsnippet
+
+snippet genfetch "generic fetch"
+fetch(URL)
+	.then(response => response.json())
+	.then(data => console.log(data));
+endsnippet
+
+snippet set "Set State"
+this.setState({
+  ${1:key}:${2:val},
+});
+endsnippet
+
+snippet con "constructor"
+constructor(props) {
+	super(props);
+	this.state = {
+		${1}
+	}
+}
+endsnippet
+
+snippet ga "generic arrow completion"
+= () => {
+  ${1:go}
+}
+endsnippet
+
+#filename example
+# function ${1:`!p snip.rv = snip.basename`}(${2}){
+# 	return(
+# 		<div>
+# 			${3:<p>Body</p>}
+# 		</div>
+# 		)
+# }

@@ -43,7 +43,6 @@ Plug 'vim-scripts/tComment'
 
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
-Plug 'epilande/vim-react-snippets'
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger='<tab>'
