@@ -127,6 +127,7 @@ augroup vimrcEx
   autocmd BufRead,BufNewFile vimrc.local set filetype=vim
 augroup END
 
+autocmd BufRead,BufNewFile *.jsx set filetype=javascript.jsx
 " ALE linting events
 " augroup ale
 "   autocmd!
@@ -237,8 +238,8 @@ nnoremap ]r :ALENextWrap<CR>
 nnoremap [r :ALEPreviousWrap<CR>
 
 " FZF {{{
-nnoremap <c-p> :Files<cr>
-nnoremap <c-e> :Buffers<cr>
+nnoremap <c-p> :Buffers<cr>
+nnoremap <c-e> :Files<cr>
 nnoremap <C-y> :execute 'Rg ' . input('Rg/')<CR>
 
 " {{{

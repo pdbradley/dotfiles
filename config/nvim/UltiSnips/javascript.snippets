@@ -66,6 +66,8 @@ snippet genfetch "generic fetch"
 fetch(URL)
 	.then(response => response.json())
 	.then(data => console.log(data));
+	.catch(e => console.error(e))
+
 endsnippet
 
 snippet set "Set State"
@@ -83,10 +85,76 @@ constructor(props) {
 }
 endsnippet
 
+snippet cons "constructor"
+constructor(props) {
+	super(props);
+	this.state = {
+		${1}
+	}
+}
+endsnippet
+
 snippet ga "generic arrow completion"
 = () => {
   ${1:go}
 }
+endsnippet
+
+# Component Lifecycle
+snippet cwm "Component Will Mount" b
+componentWillMount() {
+	$1
+}
+endsnippet
+
+snippet cdm "Component Did Mount" b
+componentDidMount() {
+	$1
+}
+endsnippet
+
+snippet cwrp "Component Will Receive Props" b
+componentWillReceiveProps(nextProps) {
+	$1
+}
+endsnippet
+
+snippet scup "Should Component Update" b
+shouldComponentUpdate(nextProps, nextState) {
+	$1
+}
+endsnippet
+
+snippet cwup "Component Will Update" b
+componentWillUpdate(nextProps, nextState) {
+	$1
+}
+endsnippet
+
+snippet cdup "Component Did Update" b
+componentDidUpdate(prevProps, prevState) {
+	$1
+}
+endsnippet
+
+snippet cwu "Component Will Unmount" b
+componentWillUnmount() {
+	$1
+}
+endsnippet
+
+snippet ren "Render"
+render() {
+	return ${1:(
+		${2:<div>${3}</div>}
+	);}
+}
+endsnippet
+
+snippet state "state ="
+  state = {
+	${1:yep}
+  };
 endsnippet
 
 #filename example
