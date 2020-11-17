@@ -475,7 +475,7 @@ vmap <C-c> :w !pbcopy<CR><CR>
 "autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 "better instapaste (thanks orenstein!)
-map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
+"map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
 
 "grab into system clipboard
 map <leader>y "*y
