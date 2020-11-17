@@ -238,8 +238,8 @@ nnoremap ]r :ALENextWrap<CR>
 nnoremap [r :ALEPreviousWrap<CR>
 
 " FZF {{{
-nnoremap <c-p> :Buffers<cr>
-nnoremap <c-e> :Files<cr>
+nnoremap <Leader>p :Buffers<cr>
+nnoremap <c-p> :Files<cr>
 nnoremap <C-y> :execute 'Rg ' . input('Rg/')<CR>
 
 " {{{
