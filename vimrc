@@ -5,14 +5,8 @@ call plug#begin('~/.vim/bundle')
 " Define bundles via Github repos
 Plug 'christoomey/vim-run-interactive'
 
-" If fzf has already been installed via Homebrew, use the existing fzf
-" Otherwise, install fzf. The `--all` flag makes fzf accessible outside of vim
-if isdirectory("/usr/local/opt/fzf")
-  Plug '/usr/local/opt/fzf'
-else
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-endif
-
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'mileszs/ack.vim'
@@ -23,7 +17,6 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'mattn/emmet-vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-scripts/VisIncr'
-Plug 'junegunn/fzf.vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'janko-m/vim-test'
 Plug 'pangloss/vim-javascript'
@@ -239,7 +232,7 @@ nnoremap [r :ALEPreviousWrap<CR>
 
 " FZF {{{
 nnoremap <Leader>p :Buffers<cr>
-nnoremap <c-p> :Files<cr>
+nnoremap <c-p> :GFiles --cached --others --exclude-standard<cr>
 nnoremap <C-y> :execute 'Rg ' . input('Rg/')<CR>
 
 " {{{
@@ -370,10 +363,10 @@ map <leader>. :CtrlPTag<cr>
 "quick open for Dropbox and notes files
 map <Leader>dr :e ~/Dropbox<cr>
 map <Leader>corner :sp ~/Dropbox/work/notes/cornerstone-notes.txt<cr>
-map <Leader>pn :sp ~/Dropbox/work/notes/project-notes.txt<cr>
-map <Leader>corner :sp ~/Dropbox/work/notes/cornerstone-notes.txt<cr>
-map <Leader>pa  :sp ~/Dropbox/work/notes/annoyances-notes.txt<cr>
-map <Leader>pt :sp ~/Dropbox/work/notes/todo.txt<cr>
+map <Leader>dn :sp ~/Dropbox/work/notes/project-notes.txt<cr>
+map <Leader>dc :sp ~/Dropbox/work/notes/cornerstone-notes.txt<cr>
+map <Leader>da  :sp ~/Dropbox/work/notes/annoyances-notes.txt<cr>
+map <Leader>dt :sp ~/Dropbox/work/notes/todo.txt<cr>
 
 "these two lines help w search.  case ignored unless search string has
 "uppercase anywhere
@@ -475,7 +468,7 @@ vmap <C-c> :w !pbcopy<CR><CR>
 "autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 "better instapaste (thanks orenstein!)
-map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
+"map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
 
 "grab into system clipboard
 map <leader>y "*y
