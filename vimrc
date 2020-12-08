@@ -33,9 +33,15 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/tComment'
+Plug 'easymotion/vim-easymotion'
 
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
+
+
+
+
+
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger='<tab>'
@@ -192,7 +198,7 @@ set numberwidth=5
 " inoremap <S-Tab> <C-n>
 
 " Switch between the last two files
-nnoremap <Leader><Leader> <C-^>
+nnoremap <Leader><Leader>f <C-^>
 
 " Get off my lawn
 nnoremap <Left> :echoe "Use h"<CR>
@@ -234,6 +240,9 @@ nnoremap [r :ALEPreviousWrap<CR>
 nnoremap <Leader>p :Buffers<cr>
 nnoremap <c-p> :GFiles --cached --others --exclude-standard<cr>
 nnoremap <C-y> :execute 'Rg ' . input('Rg/')<CR>
+
+"fzv for vim history.  ctrl-e lets you edit
+nnoremap <Leader>b :History:<CR>
 
 " {{{
 
@@ -308,7 +317,7 @@ map <Leader>* :call RunAllSpecs()<CR>:redraw!<CR>
 let g:rspec_command = ":silent !tmux send-keys -t spec 'clear' C-m 'bundle exec spring rspec --format progress --require ~/code/rspec_support/quickfix_formatter.rb --format QuickfixFormatter --out ~/quickfix.out --order rand {spec}' C-m"
 
 " opens the quickfix file and window
-map <leader>j :cg ~/quickfix.out \| cwindow<CR>
+map <leader><leader>j :cg ~/quickfix.out \| cwindow<CR>
 
 map <leader>x :execute "silent !tmux send-keys -t 1 ls C-m "<CR>
 
@@ -474,7 +483,7 @@ vmap <C-c> :w !pbcopy<CR><CR>
 map <leader>y "*y
 
 "ack on the word under the cursor
-map <leader>k :Ack <C-R><C-W><CR>
+map <leader><leader>k :Ack <C-R><C-W><CR>
 
 "projectionist heuristics for alternates
 "let g:projectionist_heuristics = { "app/*.rb": {"alternate": "spec/{}_spec.rb"} }
@@ -542,6 +551,10 @@ syntax on
 au BufRead /tmp/psql.edit.* set syntax=sql
 
 
-
-"let g:jsx_ext_required = 0
-
+"easymotion settings
+let g:EasyMotion_do_mapping = 0 "disable all mappings
+let g:EasyMotion_smartcase = 1 "case insensitive
+nmap s <Plug>(easymotion-overwin-f2)
+" JK motions: Line motions
+map <leader>j <Plug>(easymotion-j)
+map <leader>k <Plug>(easymotion-k)
