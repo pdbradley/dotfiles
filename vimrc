@@ -242,7 +242,7 @@ nnoremap <c-p> :GFiles --cached --others --exclude-standard<cr>
 nnoremap <C-y> :execute 'Rg ' . input('Rg/')<CR>
 
 "fzv for vim history.  ctrl-e lets you edit
-nnoremap <Leader>b :History:<CR>
+nnoremap <leader><Leader>b :History:<CR>
 
 " {{{
 
@@ -432,8 +432,8 @@ nnoremap <leader>S :w<cr>
 
 
 "map <leader>w to open a new vsplit and switch to it
-nnoremap <leader>w <C-w>v<C-w>l
-nnoremap <leader>h <C-w>s<C-w>j
+nnoremap <leader><leader>w <C-w>v<C-w>l
+nnoremap <leader><leader>h <C-w>s<C-w>j
 
 "get to Ack quickly with leader a
 nnoremap <leader>a :Ack
@@ -558,3 +558,5 @@ nmap s <Plug>(easymotion-overwin-f2)
 " JK motions: Line motions
 map <leader>j <Plug>(easymotion-j)
 map <leader>k <Plug>(easymotion-k)
+map <leader>w <Plug>(easymotion-w)
+map <leader>b <Plug>(easymotion-b)
