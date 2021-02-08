@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+cd /usr/local/var/postgres
+rm postmaster.pid
+brew services restart postgresql

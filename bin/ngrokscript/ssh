@@ -1,0 +1,3 @@
+#!/bin/bash
+
+/usr/local/bin/ngrok tcp --remote-addr 1.tcp.ngrok.io:20583 22

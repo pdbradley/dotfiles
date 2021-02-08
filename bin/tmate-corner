@@ -1,0 +1,55 @@
+#!/usr/local/bin/zsh
+
+# Clear rbenv variables before starting tmux
+unset RBENV_VERSION
+unset RBENV_DIR
+
+tmate -S /tmp/phils-corner-tmate start-server;
+
+  cd /Users/philip/code/cornerstonedst
+
+  # Run pre command.
+  
+
+  # Create the session and the first window. Manually switch to root
+  # directory if required to support tmux < 1.9
+  tmate -S /tmp/phils-corner-tmate new-session -d -s cornerstone -n editor
+  tmate -S /tmp/phils-corner-tmate send-keys -t cornerstone:0 cd\ /Users/philip/code/cornerstonedst C-m
+
+
+  # Create other windows.
+  tmate -S /tmp/phils-corner-tmate new-window  -t cornerstone:1 -n server
+  tmate -S /tmp/phils-corner-tmate new-window  -t cornerstone:2 -n logs
+
+
+  # Window "editor"
+  tmate -S /tmp/phils-corner-tmate send-keys -t cornerstone:0.0 vim C-m
+
+  tmate -S /tmp/phils-corner-tmate splitw -c /Users/philip/code/cornerstonedst -t cornerstone:0
+  tmate -S /tmp/phils-corner-tmate select-layout -t cornerstone:0 tiled
+  tmate -S /tmp/phils-corner-tmate send-keys -t cornerstone:0.1 ls C-m
+
+  tmate -S /tmp/phils-corner-tmate select-layout -t cornerstone:0 tiled
+
+  tmate -S /tmp/phils-corner-tmate select-layout -t cornerstone:0 even-horizontal
+  tmate -S /tmp/phils-corner-tmate select-pane -t cornerstone:0.0
+
+
+  # Window "server"
+  tmate -S /tmp/phils-corner-tmate send-keys -t cornerstone:1 bundle\ exec\ rails\ s C-m
+
+
+  # Window "logs"
+  tmate -S /tmp/phils-corner-tmate send-keys -t cornerstone:2 tail\ -f\ log/development.log C-m
+
+
+  tmate -S /tmp/phils-corner-tmate select-window -t 0
+  tmate -S /tmp/phils-corner-tmate select-pane -t 0
+
+  if [ -z "$TMUX" ]; then
+    tmate -S /tmp/phils-corner-tmate -u attach-session -t cornerstone
+  else
+    tmate -S /tmp/phils-corner-tmate -u switch-client -t cornerstone
+  fi
+
+
