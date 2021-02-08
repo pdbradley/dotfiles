@@ -26,7 +26,7 @@ export PATH="/usr/local/mysql/bin:$PATH"
 export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 
 #flutter path
-export PATH="/Users/philip/development/flutter/bin:$PATH"
+export PATH="/Users/philip/flutter/bin:$PATH"
 
 export PKG_CONFIG_PATH="/usr/local/opt/pkg-config:$PKG_CONFIG_PATH"
 
