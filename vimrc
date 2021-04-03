@@ -36,7 +36,8 @@ Plug 'vim-scripts/tComment'
 Plug 'easymotion/vim-easymotion'
 
 Plug 'honza/vim-snippets'
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
+"
 
 
 
@@ -55,7 +56,7 @@ let g:UltiSnipsJumpBackwardTrigger='<c-k>'
 "react plugins (experimental)
 Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'branch': 'release/0.x' }
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
-"let g:user_emmet_leader_key='<Tab>'
+let g:user_emmet_leader_key='<Tab>'
 let g:user_emmet_settings = {
   \  'javascript.jsx' : {
     \      'extends' : 'jsx',
@@ -432,8 +433,8 @@ nnoremap <leader>S :w<cr>
 
 
 "map <leader>w to open a new vsplit and switch to it
-nnoremap <leader><leader>w <C-w>v<C-w>l
-nnoremap <leader><leader>h <C-w>s<C-w>j
+nnoremap <leader>w <C-w>v<C-w>l
+nnoremap <leader>h <C-w>s<C-w>j
 
 "get to Ack quickly with leader a
 nnoremap <leader>a :Ack
@@ -556,7 +557,7 @@ let g:EasyMotion_do_mapping = 0 "disable all mappings
 let g:EasyMotion_smartcase = 1 "case insensitive
 nmap s <Plug>(easymotion-overwin-f2)
 " JK motions: Line motions
-map <leader>j <Plug>(easymotion-j)
-map <leader>k <Plug>(easymotion-k)
-map <leader>w <Plug>(easymotion-w)
-map <leader>b <Plug>(easymotion-b)
+"map <leader>j <Plug>(easymotion-j)
+"map <leader>k <Plug>(easymotion-k)
+"map <leader>w <Plug>(easymotion-w)
+"map <leader>b <Plug>(easymotion-b)
