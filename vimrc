@@ -8,7 +8,7 @@ Plug 'christoomey/vim-run-interactive'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'dhruvasagar/vim-table-mode'
+" Plug 'dhruvasagar/vim-table-mode'
 Plug 'mileszs/ack.vim'
 Plug 'ctrlpvim/ctrlp.vim/vim-rspec'
 Plug 'thoughtbot/vim-rspec'
@@ -40,6 +40,8 @@ Plug 'honza/vim-snippets'
 "
 
 
+"disable evil vim polyglot csv nonsense
+let g:polyglot_disabled = ['csv']
 
 
 
@@ -270,7 +272,14 @@ set nospell
 let g:go_version_warning = 0
 let mapleader = " "
 "disable folding by default
-set nofoldenable
+"set nofoldenable
+"setlocal foldmethod=syntax
+autocmd FileType javascript,typescript,json setlocal foldmarker={,}
+
+"on any line, go to the first bracket on that line and create a fold
+"useful for js and others
+nnoremap <leader>fb 0f{zfa{
+
 " Customizations
 " set relativenumber
 set number
@@ -415,7 +424,9 @@ inoremap jj <ESC>
 nnoremap cp yap<S-}>p
 
 " formats the current paragraph
-nnoremap <leader>f =ip
+nnoremap <leader>f<space> =ip
+
+
 
 " turns on paste and nopaste (messes with my typing)
 "set pastetoggle=<leader>z
