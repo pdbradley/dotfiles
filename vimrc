@@ -10,14 +10,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 " Plug 'dhruvasagar/vim-table-mode'
 Plug 'mileszs/ack.vim'
-Plug 'ctrlpvim/ctrlp.vim/vim-rspec'
 Plug 'thoughtbot/vim-rspec'
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'mattn/emmet-vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'vim-scripts/VisIncr'
-Plug 'elixir-lang/vim-elixir'
+Plug 'elixir-editors/vim-elixir'
 Plug 'janko-m/vim-test'
 Plug 'pangloss/vim-javascript'
 Plug 'pbrisbin/vim-mkdir'
@@ -34,11 +33,46 @@ Plug 'tpope/vim-surround'
 Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/tComment'
 Plug 'easymotion/vim-easymotion'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'honza/vim-snippets'
-"Plug 'SirVer/ultisnips'
-"
+Plug 'SirVer/ultisnips'
 
+"did :CocInstall coc-snippets
+imap <C-n> <Plug>(coc-snippets-expand)
+"
+" " Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+"
+" " Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+"
+" " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+"
+" " Use <C-j> for both expand and jump (make expand higher priority.)
+"imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? coc#_select_confirm() :
+"       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+"
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
+"
+" let g:coc_snippet_next = '<tab>'
+
+"coc configuration
+"more space for messages
+set cmdheight=2
+set updatetime=300
+" don't pass messages to ins-completion-menu
+set shortmess+=c
 
 "disable evil vim polyglot csv nonsense
 let g:polyglot_disabled = ['csv']
@@ -47,7 +81,7 @@ let g:polyglot_disabled = ['csv']
 
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger='<tab>'
+" let g:UltiSnipsExpandTrigger='<tab>'
 
 " shortcut to go to next position
 let g:UltiSnipsJumpForwardTrigger='<c-j>'
@@ -230,10 +264,10 @@ set splitbelow
 set splitright
 
 " Quicker window movement
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
+"nnoremap <C-j> <C-w>j
+"nnoremap <C-k> <C-w>k
+"nnoremap <C-h> <C-w>h
+"nnoremap <C-l> <C-w>l
 
 " Move between linting errors
 nnoremap ]r :ALENextWrap<CR>
@@ -331,11 +365,13 @@ map <leader><leader>j :cg ~/quickfix.out \| cwindow<CR>
 
 map <leader>x :execute "silent !tmux send-keys -t 1 ls C-m "<CR>
 
+
 "tabs
 map <C-t> <esc>:tabnew<CR>
 
 "shift direction to change tabs
 noremap <S-l> gt
+
 noremap <S-h> gT
 
 noremap :W :wall<cr>
