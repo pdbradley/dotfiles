@@ -5,3 +5,15 @@ function g {
      git status
    fi
 }
+
+# to alter priority of tasks in task warrior
+function taskh {
+  t modify $1 priority:H
+}
+function taskm {
+  t modify $1 priority:M
+}
+function taskl {
+  t modify $1 priority:L
+}
+
