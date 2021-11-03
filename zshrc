@@ -1,82 +1,112 @@
-# had to preload compdef https://github.com/memborsky/dotfiles/commit/0cd2e69463d25bb0d9fa17710c7a8ed8f54a018f
-autoload -U compinit compdef
-compinit
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# complete g like git
-compdef g=git
+# Path to your oh-my-zsh installation.
+export ZSH="/Users/philip/.oh-my-zsh"
 
-function g {
-   if [[ $# > 0 ]]; then
-     git $@
-   else
-     git status
-   fi
-}
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
 
-transfer() { if [ $# -eq 0 ]; then echo "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi 
-  tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; } 
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
+# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
+# ZVM_VI_ESCAPE_BINDKEY=jj
+# plugins+=(zsh-vi-mode)
+plugins+=(docker docker-compose)
 
 
-export VISUAL=nvim
-export PATH="/Users/philip/dotfiles/bin:$PATH"
+source $ZSH/oh-my-zsh.sh
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-export PATH="/usr/local/mysql/bin:$PATH"
-export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/Users/philip/.asdf/shims/python3
+export PROJECT_HOME=$HOME/Devel
+source /usr/local/bin/virtualenvwrapper.sh
 
-#flutter path
-export PATH="/Users/philip/flutter/bin:$PATH"
+# User configuration
 
-export PKG_CONFIG_PATH="/usr/local/opt/pkg-config:$PKG_CONFIG_PATH"
+# export MANPATH="/usr/local/man:$MANPATH"
 
-export EDITOR='nvim'
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
 
-export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
-autoload -Uz compinit && compinit
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
 
-export PATH="$HOME/bin:$PATH"
-export PATH="$HOME/bin/jruby-9.1.2.0/bin:$PATH"
-
-
-# for erlang / iex
-export ERL_AFLAGS="-kernel shell_history enabled"
-
-source $HOME/dotfiles/zsh/prompt
-source $HOME/dotfiles/zsh/aliases
-
-# added by travis gem
-[ -f /Users/philip/.travis/travis.sh ] && source /Users/philip/.travis/travis.sh
-
-# autojump
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-
-#source ~/bin/tmuxinator.zsh
-
-bindkey "^P" up-line-or-search
-bindkey "^A" vi-beginning-of-line
-
-. $HOME/.asdf/asdf.sh
-
-#. $HOME/.asdf/completions/asdf.bash
-
-#export PATH="$(brew --prefix qt@5.5)/bin:$PATH"
-
-# twilio autocomplete setup
-TWILIO_AC_ZSH_SETUP_PATH=/Users/philip/.twilio-cli/autocomplete/zsh_setup && test -f $TWILIO_AC_ZSH_SETUP_PATH && source $TWILIO_AC_ZSH_SETUP_PATH;
-
-export PATH="$PATH:`yarn global bin`"
-
-export PATH="/usr/local/opt/node@10/bin:$PATH"
-
-# Added by serverless binary installer
-export PATH="$HOME/.serverless/bin:$PATH"
-
-# The next line updates PATH for Netlify's Git Credential Helper.
-if [ -f '/Users/philip/.netlify/helper/path.zsh.inc' ]; then source '/Users/philip/.netlify/helper/path.zsh.inc'; fi
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
