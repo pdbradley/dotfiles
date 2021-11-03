@@ -8,10 +8,12 @@ alias c='cd'
 alias d='cd ~/.dotfiles'
 alias dr='cd ~/Dropbox'
 alias drop='cd ~/Dropbox'
+alias g='g'
 alias gad='git add --all .'
 alias gca='git commit -a'
 alias gcl='git clone'
 alias gcm="git commit -m"
+alias gdc="git diff --cached"
 alias gundo="git reset --hard HEAD"
 alias gco='git checkout'
 alias gd='git diff'
@@ -31,8 +33,10 @@ alias rc='bin/rails console'
 alias remigrate='rake db:migrate && rake db:migrate:redo && rake db:schema:dump && rake db:test:prepare'
 alias reseed='rake db:drop && rake db:create && rake db:migrate && rake db:seed'
 alias rdm="bin/rake db:migrate"
+alias rdmr="bin/rake db:migrate:reset"
 alias rdmt="RAILS_ENV=test bin/rake db:migrate"
 alias rdmrt="RAILS_ENV=test bin/rake db:migrate:reset"
+alias resettest="bin/rails db:environment:set RAILS_ENV=test && RAILS_ENV=test bin/rake db:drop && RAILS_ENV=test bin/rake db:create && RAILS_ENV=test bin/rake db:migrate"
 alias rrg="be rake routes | grep "
 alias rdtp="bin/rake db:test:prepare"
 alias rs='bundle install && rails server -p 3000'
@@ -49,6 +53,5 @@ alias vimx='nvim'
 alias v='nvim'
 alias ta='t add'
 alias rtm='rtmr'
-alias rtmr='RAILS_ENV=test bin/rake db:migrate:reset'
 alias nins='npm install && npm start'
-alias nargh='ls'
+alias killdock='docker container kill $(docker ps -q)'
