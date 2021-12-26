@@ -17,3 +17,6 @@ function taskl {
   t modify $1 priority:L
 }
 
+function ezf {
+  find . -name $1 -print
+}

@@ -18,7 +18,9 @@ export PATH="$HOME/bin:$PATH"
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="/usr/local/mysql/bin:$PATH"
-export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+
+# postgres
+export PATH="/usr/local/opt/postgresql@13/bin:$PATH"
 
 #flutter path
 export PATH="/Users/philip/flutter/bin:$PATH"
