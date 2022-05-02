@@ -1,4 +1,7 @@
 set encoding=utf-8
+set ma
+
+colorscheme elflord
 
 call plug#begin('~/.vim/bundle')
 
@@ -22,7 +25,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'pbrisbin/vim-mkdir'
 Plug 'tpope/vim-bundler'
 Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-eunuch'
+"Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-rails'
@@ -33,14 +36,17 @@ Plug 'tpope/vim-surround'
 Plug 'vim-ruby/vim-ruby'
 Plug 'vim-scripts/tComment'
 Plug 'easymotion/vim-easymotion'
+Plug 'HerringtonDarkholme/yats.vim'
+"Plug 'neovim/nvim-lspconfig'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'honza/vim-snippets'
-Plug 'SirVer/ultisnips'
+
+"Plug 'SirVer/ultisnips'
 
 "did :CocInstall coc-snippets
-imap <C-n> <Plug>(coc-snippets-expand)
-"
+" imap <C-n> <Plug>(coc-snippets-expand)
+
 " " Use <C-j> for select text for visual placeholder of snippet.
 vmap <C-j> <Plug>(coc-snippets-select)
 "
@@ -54,23 +60,7 @@ let g:coc_snippet_prev = '<c-k>'
 "imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? coc#_select_confirm() :
-"       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-"       \ coc#refresh()
-"
-" function! s:check_back_space() abort
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~# '\s'
-" endfunction
-"
-" let g:coc_snippet_next = '<tab>'
 
-"coc configuration
-"more space for messages
-set cmdheight=2
-set updatetime=300
 " don't pass messages to ins-completion-menu
 set shortmess+=c
 
@@ -78,27 +68,21 @@ set shortmess+=c
 let g:polyglot_disabled = ['csv']
 
 
-
-" Trigger configuration. Do not use <tab> if you use
-" https://github.com/Valloric/YouCompleteMe.
-" let g:UltiSnipsExpandTrigger='<tab>'
-
-" shortcut to go to next position
-let g:UltiSnipsJumpForwardTrigger='<c-j>'
-
-" shortcut to go to previous position
-let g:UltiSnipsJumpBackwardTrigger='<c-k>'
+" " shortcut to go to next position
+" let g:UltiSnipsJumpForwardTrigger='<c-j>'
+"
+" " shortcut to go to previous position
+" let g:UltiSnipsJumpBackwardTrigger='<c-k>'
 
 "react plugins (experimental)
 Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'branch': 'release/0.x' }
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
-let g:user_emmet_leader_key='<Tab>'
+let g:user_emmet_leader_key='<C-y>'
 let g:user_emmet_settings = {
   \  'javascript.jsx' : {
     \      'extends' : 'jsx',
     \  },
   \}
-
 
 
 call plug#end()
@@ -197,20 +181,6 @@ set list listchars=tab:»·,trail:·,nbsp:·
 " Use one space, not two, after punctuation.
 set nojoinspaces
 
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in fzf for listing files. Lightning fast and respects .gitignore
-  let $FZF_DEFAULT_COMMAND = 'ag --literal --files-with-matches --nocolor --hidden -g ""'
-
-  if !exists(":Ag")
-    command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-    nnoremap \ :Ag<SPACE>
-  endif
-endif
-
 " Make it obvious where 80 characters is
 set textwidth=80
 set colorcolumn=+1
@@ -275,8 +245,9 @@ nnoremap [r :ALEPreviousWrap<CR>
 
 " FZF {{{
 nnoremap <Leader>p :Buffers<cr>
-nnoremap <c-p> :GFiles --cached --others --exclude-standard<cr>
-nnoremap <C-y> :execute 'Rg ' . input('Rg/')<CR>
+"nnoremap <c-p> :GFiles --cached --others --exclude-standard<cr>
+nnoremap <c-p> :Files <cr>
+"nnoremap <C-y> :execute 'Rg ' . input('Rg/')<CR>
 
 "fzv for vim history.  ctrl-e lets you edit
 nnoremap <leader><Leader>b :History:<CR>
@@ -543,7 +514,6 @@ cnoremap <expr> %% expand('%:h').'/'
 map <leader>e :edit %%
 map <leader>v :view %%
 
-colorscheme ron
 
 "highlight debugging stuff so you don't miss it
 au BufEnter *.rb syn match error contained "\<byebug\>"
@@ -608,3 +578,69 @@ nmap s <Plug>(easymotion-overwin-f2)
 "map <leader>k <Plug>(easymotion-k)
 "map <leader>w <Plug>(easymotion-w)
 "map <leader>b <Plug>(easymotion-b)
+"
+"
+"
+"--------------------COC configuration-----------------------------
+" This section below is taken from the https://github.com/neoclide/coc.nvim
+" Might be duplicate of settings above, that's ok.  putting it at bottom so it
+" can override settings from above if necessary.
+"
+"
+"----------------------------------------------------------------------------
+
+" Set internal encoding of vim, not needed on neovim, since coc.nvim using some
+" unicode characters in the file autoload/float.vim
+set encoding=utf-8
+
+" TextEdit might fail if hidden is not set.
+set hidden
+
+" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
+
+" Give more space for displaying messages.
+set cmdheight=2
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("nvim-0.5.0") || has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+
+
+
+

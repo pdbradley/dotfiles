@@ -16,6 +16,9 @@ function taskm {
 function taskl {
   t modify $1 priority:L
 }
+function taskp {
+  t modify $1 priority:$2
+}
 
 function ezf {
   find . -name $1 -print
