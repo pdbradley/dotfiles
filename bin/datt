@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# datt (docker attach)
+# usage:
+
+# bin/datt <container name>
+#
+# bin/datt rails
+# if docker ps shows a container with the name "rails" in it, this will attach you to the container
+# this is useful when running debugger or pry
+
+# note that if you have two containers that can both match the <container name> substring
+# results are unpredictable
+
+docker attach $( docker ps | grep $1 | awk "{print \$1}" | head -n 1 )
